@@ -30,6 +30,12 @@ const LinkedinIcon = () => (
   </svg>
 );
 
+const PhoneIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+);
+
 function App() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('All');
@@ -46,7 +52,6 @@ function App() {
     }
   }, []);
 
-  // Split featured (Title Event) from the rest
   const featuredEvent = useMemo(() => events.find(e => e.category === 'Title Event'), []);
   const regularEvents = useMemo(() => events.filter(e => e.category !== 'Title Event'), []);
 
@@ -60,6 +65,12 @@ function App() {
 
   const filters = ['All', 'Technical', 'Non-Technical'];
 
+  // Contact data
+  const contacts = [
+    { name: 'Sri Prakash', phone: '9363240058' },
+    { name: 'Siva', phone: '9176938197' },
+  ];
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center">
       <div className="app-bg"></div>
@@ -70,7 +81,7 @@ function App() {
 
         <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent my-6"></div>
 
-        {/* ⭐ FEATURED TITLE EVENT */}
+        {/* Featured Event */}
         {featuredEvent && (
           <section className="w-full mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -87,7 +98,7 @@ function App() {
           </section>
         )}
 
-        {/* Regular Events Section */}
+        {/* Regular Events */}
         <section className="w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
@@ -140,30 +151,81 @@ function App() {
           )}
         </section>
 
-        <footer className="w-full mt-24 pt-10 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="text-center sm:text-left">
-              <h3 className="text-lg font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+        {/* ============ ENHANCED FOOTER ============ */}
+        <footer className="w-full mt-24">
+          {/* Top border glow */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent mb-10"></div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+
+            {/* Column 1: Brand */}
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 ASCENTRON'26
               </h3>
-              <p className="text-xs text-gray-400 mt-1 font-light">
+              <p className="text-xs text-gray-400 mt-2 font-light tracking-wider">
                 ECE Department • Annual Event
               </p>
+              <p className="text-xs text-gray-500 mt-4 leading-relaxed font-light max-w-xs mx-auto md:mx-0">
+                Where innovation meets celebration. Join us for a spectacular lineup of technical and non-technical events.
+              </p>
+
+              {/* Social icons */}
+              <div className="flex items-center justify-center md:justify-start gap-3 mt-6">
+                <a href="https://www.instagram.com/eea.mit?stkn=MnV4a255b2FxZGxs" className="w-9 h-9 rounded-full bg-slate-800/60 border border-white/15 flex items-center justify-center text-gray-300 hover:text-white hover:border-blue-400 hover:bg-slate-800 transition-all">
+                  <InstagramIcon />
+                </a>
+               
+              </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <a href="https://www.instagram.com/eea.mit?stkn=MnV4a255b2FxZGxs" className="w-10 h-10 rounded-full bg-slate-800/60 border border-white/15 flex items-center justify-center text-gray-300 hover:text-white hover:border-blue-400 hover:bg-slate-800 transition-all">
-                <InstagramIcon />
-              </a>
-              
-              
+            
+
+            {/* Column 3: Contact */}
+            <div className="text-center md:text-left">
+              <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-emerald-300 mb-4">
+                Need Help?
+              </h4>
+              <p className="text-xs text-gray-500 mb-4 font-light">
+                Reach out to our coordinators
+              </p>
+
+              <div className="space-y-3">
+                {contacts.map((c) => (
+                  <a
+                    key={c.phone}
+                    href={`tel:${c.phone}`}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/50 border border-white/10 hover:border-emerald-400/40 hover:bg-slate-800/80 hover:shadow-lg hover:shadow-emerald-500/10 transition-all no-underline"
+                  >
+                    <div className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/30">
+                      <PhoneIcon />
+                    </div>
+                    <div className="text-left min-w-0 flex-1">
+                      <p className="text-[10px] font-semibold tracking-widest uppercase text-emerald-300">
+                        {c.name}
+                      </p>
+                      <p className="text-sm font-bold text-white group-hover:text-emerald-200 transition-colors">
+                        +91 {c.phone}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
+
           </div>
 
-          <p className="text-center text-xs text-gray-500 mt-8 font-light">
-            © 2026 Ascentron. All rights reserved.
-          </p>
+          {/* Bottom bar */}
+          <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-gray-500 font-light">
+              © 2026 Ascentron. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-500 font-light flex items-center gap-1.5">
+              Made with <span className="text-pink-400">♥</span> by ECE Department
+            </p>
+          </div>
         </footer>
+
       </main>
     </div>
   );
