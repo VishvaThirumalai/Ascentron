@@ -10,4 +10,6 @@ export const events = [
   { id: 9,  name: "Connexions",      category: "Non-Technical",     link: "https://docs.google.com/forms/d/e/1FAIpQLSfi05fcFtsJHO9cRQIDnx_qPG09wwJfpEUQz2Q-_qnQZhOI_w/viewform?usp=publish-editor" },
   { id: 10, name: "Mystery Room",    category: "Non-Technical",     link: "https://docs.google.com/forms/d/e/1FAIpQLScR4tCATldkizbeumyNmP-lK8UFxExDcKxXjSuYz5RRq_sIoA/viewform?usp=dialog" },
   { id: 11,  name: "Treasure Hunt",      category: "Non-Technical",     link: "https://forms.gle/ya51H8jhx5MpBJEL8" },
+    { id: 12,  name: "Bug Buster",      category: "Technical",     link: "https://docs.google.com/forms/d/e/1FAIpQLScR9ZImV3gog2J5wOCnPJc46-pAlj1YfVopEYybMIJnnlQfMA/viewform?usp=header" },
+
 ];
